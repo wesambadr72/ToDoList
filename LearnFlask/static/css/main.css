@@ -1,4 +1,88 @@
- body{
-    margin: 0;
-    font-family: 'NewYorkTimes';
- }
+body {
+   background-color: #e0f7fa;
+   margin: 0;
+   padding: 0;
+   font-family: Arial, sans-serif;
+}
+
+h1 {
+   color: #25645d;
+   text-align: center;
+   margin-top: 20px;
+}
+
+.content {
+   width: 80%;
+   margin: 20px auto;
+   background: #ffffff;
+   padding: 20px;
+   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+   border-radius: 8px;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+   margin: 20px 0;
+}
+
+table, th, td {
+   border: 1px solid #ddd;
+}
+
+th, td {
+   padding: 12px;
+   text-align: left;
+}
+
+th {
+   background-color: #00796b;
+   color: white;
+}
+
+tr:nth-child(even) {
+   background-color: #b2dfdb;
+}
+
+tr:nth-child(odd) {
+   background-color: #e0f2f1;
+}
+
+tr:hover {
+   background-color: #80cbc4;
+}
+
+form {
+   display: flex;
+   justify-content: space-between;
+   margin-top: 20px;
+}
+
+input[type="text"] {
+   width: 80%;
+   padding: 10px;
+   border: 1px solid #ddd;
+   border-radius: 4px;
+}
+
+input[type="submit"] {
+   padding: 10px 20px;
+   border: none;
+   background-color: #00796b;
+   color: white;
+   border-radius: 4px;
+   cursor: pointer;
+}
+
+input[type="submit"]:hover {
+   background-color: #004d40;
+}
+
+a {
+   color: #000000;
+   text-decoration: none;
+}
+
+a:hover {
+   text-decoration: underline;
+}
