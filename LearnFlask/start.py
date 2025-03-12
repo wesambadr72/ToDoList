@@ -6,22 +6,22 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-# السماح بطلبات من الفرونت إند
+# connect to frontend
 CORS(app)
 
-# الاتصال بقاعدة البيانات
+# connect to database
 app.config["MONGO_URI"] = "mongodb://localhost:27017/Learn"
 db = PyMongo(app).db
 
-# جلب جميع المهام
+# show all tasks
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
     tasks = list(db.Tasks.find({}, {"_id": 1, "content": 1, "completed": 1, "date_Created": 1}))
     for task in tasks:
-        task["_id"] = str(task["_id"])  # تحويل ObjectId إلى string
+        task["_id"] = str(task["_id"])  # convert ObjectId to string
     return jsonify(tasks)
 
-# إضافة مهمة جديدة
+# add a new task
 @app.route('/tasks', methods=['POST'])
 def add_task():
     data = request.json
@@ -34,20 +34,20 @@ def add_task():
     new_task["_id"] = str(task_id)
     return jsonify(new_task), 201
 
-# تحديث المهمة
+# update task
 @app.route('/tasks/<id>', methods=['PUT'])
 def update_task(id):
     data = request.json
     db.Tasks.update_one({"_id": ObjectId(id)}, {"$set": {"content": data["content"]}})
     return jsonify({"message": "Task updated"})
 
-# حذف المهمة
+# delete a task
 @app.route('/tasks/<id>', methods=['DELETE'])
 def delete_task(id):
     db.Tasks.delete_one({"_id": ObjectId(id)})
     return jsonify({"message": "Task deleted"})
 
-# تغيير حالة المهمة
+# toggle task completion
 @app.route('/tasks/<id>/complete', methods=['PUT'])
 def toggle_complete(id):
     task = db.Tasks.find_one({"_id": ObjectId(id)})
